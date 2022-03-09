@@ -11,7 +11,7 @@ create_sce_from_counts <- function(counts, colData, rowData = NULL) {
                                        rowData = rowData)
     }
     # this function writes to logcounts slot
-    exprs(sceset) <- log2(calculateCPM(sceset, use.size.factors = FALSE) + 1)
+    exprs(sceset) <- log2(calculateCPM(sceset) + 1)
     # use gene names as feature symbols
     rowData(sceset)$feature_symbol <- rownames(sceset)
     # remove features with duplicated names
@@ -19,8 +19,8 @@ create_sce_from_counts <- function(counts, colData, rowData = NULL) {
         sceset <- sceset[!duplicated(rowData(sceset)$feature_symbol), ]
     }
     # QC
-    isSpike(sceset, "ERCC") <- grepl("^ERCC-", rownames(sceset))
-    sceset <- calculateQCMetrics(sceset, feature_controls = list("ERCC" = isSpike(sceset, "ERCC")))
+    # isSpike(sceset, "ERCC") <- grepl("^ERCC-", rownames(sceset))
+    sceset <- calculateQCMetrics(sceset, feature_controls = list("ERCC" = grepl("^ERCC-", rownames(sceset))))
     return(sceset)
 }
 
