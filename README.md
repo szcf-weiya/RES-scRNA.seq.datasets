@@ -1,4 +1,4 @@
-## Results for fork from https://github.com/hemberg-lab/scRNA.seq.datasets
+## Results for https://github.com/hemberg-lab/scRNA.seq.datasets
 
 **Since I cannot push the results into a fork repo via LFS (refer to https://github.com/git-lfs/git-lfs/issues/1906), then I create current repo to store the results, `scater-objects`.**
 
